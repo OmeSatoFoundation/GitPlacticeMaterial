@@ -41,7 +41,56 @@
 
 
 
-### 1.2 リポジトリのclone
+### 1.2 鍵の登録
+
+鍵を作成、登録しておくことでGitHubと安全に通信することができます。
+
+ターミナル上で鍵を作成しコピーします。
+
+```bash
+# 鍵の作成  (コマンド実行後、Enterを３回ぐらい押す必要があります。)
+ssh-keygen -t rsa
+
+# 公開鍵のコピー(windowsの人)
+cat ~/.ssh/id_rsa.pub | clip.exe
+# 公開鍵のコピー(macの人)
+cat ~/.ssh/id_rsa.pub | pbcopy
+# 公開鍵のコピー(ラズパイの人)
+sudo apt-get install xsel
+cat ~/.ssh/id_rsa.pub | xsel --clipboard --input
+```
+
+次にhttps://github.com/settings/keysにアクセスして鍵を登録します。
+
+1. `New SSH key`ボタンを押します。
+   <img src="./log_images/ssh_key01.png" style="zoom:80%;" />
+2. Titleに好きな名前を記入
+3. Keyの欄に先ほどコピーした鍵を貼り付けます。(Ctrl-v or Cmd-v)
+4. 最後に`Add SSH key`ボタンを押して完了です。
+   <img src="./log_images/ssh_key02.png" style="zoom:80%;" />
+
+##### 鍵についての補足
+
+`ssh-keygen -t rsa`によって秘密鍵(id_rsa)と公開鍵(id_rsa.pub)が生成されます。
+
+```bash
+# 鍵の確認方法
+ls ~/.ssh
+
+# 実行結果: id_rsa id_rsa.pub
+```
+
+GitHubに登録したものは公開鍵です。
+GitHub登録された公開鍵に対応する秘密鍵を持っている人のみがアクセスが可能になり、それ以外の人は弾くことで安全性を確保しています。
+
+- 秘密鍵は他の人に見せたりしないでください。
+  - 他の人が不正にアクセスできるようになってしまいます。
+- 一台のコンピュータで鍵の生成`ssh-keygen-t rsa`は一度だけでよいです。
+  - 再度生成した場合は、再度GitHubへの公開鍵の登録が必要になります。
+
+
+
+### 1.3 リポジトリのclone
 
 文章を自身のコンピュータで編集できるようにするため、自身のコンピュータに先ほどコピーしたリポジトリを持ってきます。このことを`clone`と呼びます
 
@@ -61,7 +110,7 @@
 
 
 
-### 1.3 git config
+### 1.4 git config
 
 名前とメールアドレスを以下のコマンドで設定できます.
 
@@ -252,36 +301,9 @@ git checkout main
 
 この章では、これらの変更をGitHub上のリモートリポジトリに反映してみましょう。
 
-### 4.1 (準備) 鍵の登録
-鍵を作成、登録しておくことでGitHubと安全に通信することができます。
-
-ターミナル上で鍵を作成しコピーします。
-
-```bash
-# 鍵の作成 
-ssh-keygen -t rsa
-
-# 公開鍵のコピー(windowsの人)
-cat ~/.ssh/id_rsa.pub | clip.exe
-# 公開鍵のコピー(macの人)
-cat ~/.ssh/id_rsa.pub | pbcopy
-# 公開鍵のコピー(ラズパイの人)
-sudo apt-get install xsel
-cat ~/.ssh/id_rsa.pub | xsel --clipboard --input
-```
-
-次にhttps://github.com/settings/keysにアクセスして鍵を登録します。
-
-1. `New SSH key`ボタンを押します。
-    <img src="./log_images/ssh_key01.png" style="zoom:80%;" />
-2. Titleに好きな名前を記入
-3. Keyの欄に先ほどコピーした鍵を貼り付けます。(Ctrl-v or Cmd-v)
-4. 最後に`Add SSH key`ボタンを押して完了です。
-    <img src="./log_images/ssh_key02.png" style="zoom:80%;" />
-
 #### 2022/12/10の参加者向け
 
-前半をHTTPSで設定してしまったため、本来設定したいSSHでの設定に切り替えます。
+鍵の登録完了後、前半のパートをHTTPSで設定してしまったため、本来設定したいSSHでの通信設定に切り替えます。
 
 1. コピー後のリポジトリで`<>Code`ボタンを押します
 
