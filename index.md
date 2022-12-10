@@ -77,13 +77,13 @@ git config --global user.email メールアドレス
 
 ### 2.1 ファイルの編集
 1. `README.md`を編集するためにエディタを開きます。
-    
+   
     1. Windows: `notepad.exe README.md`
     2. Mac: `open README.md`
     3. ラズパイ: `leafpad README.md`
     
 2. 1文目を修正します。
-    
+   
     ```txt
     (編集前) 1. 物置の隅で、ほこりぐるみになっている古い人形を見つけた。
     (編集後) 1. 物置の隅で、ほこりまみれになっている古い人形を見つけた。
@@ -278,6 +278,27 @@ cat ~/.ssh/id_rsa.pub | xsel --clipboard --input
 3. Keyの欄に先ほどコピーした鍵を貼り付けます。(Ctrl-v or Cmd-v)
 4. 最後に`Add SSH key`ボタンを押して完了です。
     <img src="./log_images/ssh_key02.png" style="zoom:80%;" />
+
+#### 2022/12/10の参加者向け
+
+前半をHTTPSで設定してしまったため、本来設定したいSSHでの設定に切り替えます。
+
+1. コピー後のリポジトリで`<>Code`ボタンを押します
+
+2. SSHを選択します
+
+3. リンクをコピーしてください。
+   <img src="log_images/clone01.png" style="zoom:67%;" />
+
+4. `ls`コマンドで`README.md`が存在することを確認してください
+
+   1. ない場合は、`cd`コマンドで`README.md`がいるディレクトリに移動してください。
+
+5. 以下のコマンドを入力してください
+
+   ```bash
+   git remote set-url origin コピーしたリンク
+   ```
 
 
 
