@@ -106,7 +106,7 @@ GitHub登録された公開鍵に対応する秘密鍵を持っている人の�
     git clone コピーしたリンク
     ```
     GitBashの人は`Shift-Insert`でコピーしたリンクを貼り付けられます。
-5. `cd Github_Plactice`で移動し、再度`ls`で`README.md`が存在することを確認してください
+5. `cd Github_Practice`で移動し、再度`ls`で`README.md`が存在することを確認してください
 
 
 
